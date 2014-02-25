@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    <TextView android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Layout 중첩 시키기"
+        android:gravity="center"
+        android:background="#00ff00"/>
+	<LinearLayout android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:orientation="horizontal">
+	    <Button android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="버튼1"
+	        android:layout_weight="1"/>
+	    <Button android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="버튼2"/>
+	    <Button android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="버튼3"/>
+	</LinearLayout>
+	<LinearLayout android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:orientation="horizontal">
+	    <Button android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="버튼4"
+	        android:layout_weight="1"/>
+	    <Button android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="버튼5"
+	        android:layout_weight="1"/>
+	    <Button android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="버튼6"/>
+	</LinearLayout>
+	<LinearLayout android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:orientation="horizontal">
+	    <Button android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="버튼7"
+	        android:layout_weight="1"/>
+	    <Button android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="버튼8"
+	        android:layout_weight="1"/>
+	    <Button android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:text="버튼9"
+	        android:layout_weight="1"/>
+	</LinearLayout>
+	
+	<LinearLayout android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:orientation="horizontal">
+	    <Button android:layout_width="0dp"
+	        android:layout_height="wrap_content"
+	        android:text="버튼10"
+	        android:layout_weight="1"/>
+	    <Button android:layout_width="0dp"
+	        android:layout_height="wrap_content"
+	        android:text="버튼11"
+	        android:layout_weight="1"/>
+	    <Button android:layout_width="0dp"
+	        android:layout_height="wrap_content"
+	        android:text="버튼12 !"
+	        android:layout_weight="1"/>
+	</LinearLayout>
+	
+	<LinearLayout android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:orientation="horizontal">
+	    <Button android:layout_width="0dp"
+	        android:layout_height="wrap_content"
+	        android:text="버튼13"
+	        android:layout_weight="1"/>
+	    <Button android:layout_width="0dp"
+	        android:layout_height="wrap_content"
+	        android:text="버튼14"
+	        android:layout_weight="1"/>
+	    <Button android:layout_width="0dp"
+	        android:layout_height="wrap_content"
+	        android:text="버튼15"
+	        android:layout_weight="2"/>
+	</LinearLayout>
+	
+	
+</LinearLayout>
