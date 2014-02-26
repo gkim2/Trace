@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+<script src="/socket.io/socket.io.js"></script>
+<script>
+    var socket=io.connect();
+    var servedMsg="";
+    function send(){
+    	var msg={
+    		"id":document.getElementById("id").value,
+    		"pw":document.getElementById("pw").value
+    	};
+        socket.emit("login",msg);
+    }
+    socket.on("bc",function(data){
+        servedMsg+="<li>"+data+"</li>";
+        document.getElementById("msgList").innerHTML=servedMsg;
+    });
+</script>
+</head>
+<body>
+    <input type="text" id="id">
+    <input type="password" id="pw">
+    <button onclick="send()">전송</button>
+    <ul>
+        <div id="msgList"></div>
+    </ul>
+</body>
+</html>
