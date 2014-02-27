@@ -1,5 +1,5 @@
-<resources>
-
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+	<!--  주석이예요 -->
     <!--
         Base application theme, dependent on API level. This theme is replaced
         by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
@@ -16,5 +16,10 @@
     <style name="AppTheme" parent="AppBaseTheme">
         <!-- All customizations that are NOT specific to a particular API-level can go here. -->
     </style>
-
+	<style name="songstyle">
+	    <item name="android:textSize"	>20sp</item>
+	    <item name="android:background">#00ff00</item>
+	    <item name="android:gravity">center</item>
+	    
+	</style>
 </resources>
