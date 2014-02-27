@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+    
+    <TextView android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Main Activity3입니다."
+        android:background="#00ff00"
+        android:gravity="center"
+        android:textSize="20sp"/>
+	
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="입력" 
+        android:onClick="insert"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="수정" 
+        android:onClick="update"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="삭제" 
+        android:onClick="delete"/>
+</LinearLayout>

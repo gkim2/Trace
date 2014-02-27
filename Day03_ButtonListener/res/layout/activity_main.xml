@@ -49,32 +49,6 @@
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/seekBar1" />
 
-    <RadioGroup
-        android:id="@+id/radioGroup1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/button2"
-        android:layout_alignRight="@+id/seekBar2" >
-
-        <RadioButton
-            android:id="@+id/radio0"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:checked="true"
-            android:text="RadioButton" />
-
-        <RadioButton
-            android:id="@+id/radio1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="RadioButton" />
-
-        <RadioButton
-            android:id="@+id/radio2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="RadioButton" />
-    </RadioGroup>
 
     <ProgressBar
         android:id="@+id/progressBar1"
