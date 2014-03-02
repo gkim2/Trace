@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8">
+	<title>main.html</title>
+</head>
+<SCRIPT LANGUAGE="JavaScript">
+ function userSubmit() 
+{ 
+  var now = new Date();
+  var nowTime = now.getFullYear() + "-" + (now.getMonth()+1) + "-" + now.getDate();
+  document.getElementById("reg").value = nowTime;
+  var frm = document.getElementById("frm");
+  frm.action="join";  
+  frm.submit(); 
+}
+</SCRIPT>
+<body>
+	<form id=frm method=post>
+		<h1>JOIN</h1>
+		<input type="hidden" id="reg" name="regdate"/>
+		id<input type="text" name="id"/></br>
+		pw<input type="password" name="pw"/></br>
+		name<input type="text" name="name"/></br>
+		phone<input type="text" name="phone"/></br>
+		sex<select name="sex">
+		<option value="M">남자</option>
+		<option value="W">여자</option></select>
+		addr<select name="addr">
+		<option value="1">한국</option></select></br> 
+		<a href="javascript:userSubmit()">가입</a>
+	</form>
+</body>
+
+</html>

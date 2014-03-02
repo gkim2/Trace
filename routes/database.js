@@ -18,10 +18,13 @@ exports.out = function(req, res){
         });
     });
 };
+
 //로그인
 exports.login = function(req, res){
-	//전역변수로 받아올 결과 값
-	var loginInfo = ["abc", 1234];
+	
+	var id = req.body.id;
+	var pw = req.body.pw;
+	var loginInfo = [id, pw];
 	
 	global.conn.query('USE jschema', function(err){
         if(err) throw err;
@@ -41,15 +44,22 @@ exports.join = function(req, res){
 	
 	global.conn.query('USE jschema', function(err){
 		if(err) throw err;
-	//전역변수로 받아올 결과 값
-	var joinInfo = {mid:"abc",mpw:"1234",mname:"김구라", maddr:"1", 
-			mregdate:"2000-2-22", mdelflag:"N", msex:"M", mphone:"011"};
-	var size = 0;
+	
+	var id = req.body.id;
+	var pw = req.body.pw;
+	var name = req.body.name;
+	var addr = req.body.addr;
+	var regdate = req.body.regdate;
+	var sex = req.body.sex;
+	var phone = req.body.phone;
+	
+	var joinInfo = {mid:id,mpw:pw,mname:name, maddr:addr, 
+			mregdate:regdate, mdelflag:"N", msex:sex, mphone:phone};
 	
     global.conn.query('INSERT INTO members SET ?', joinInfo, function(err, result){
         if(err) throw err;
         
-        	res.redirect("/");//가입 성공시 이동
+        res.send("성공");//가입 성공시 이동
         
     });
 });

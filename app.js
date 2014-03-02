@@ -41,10 +41,10 @@ if ('development' == app.get('env')) {
 }
 
 app.get('/', routes.main);//메인페이지
-app.get('/users', user.list);//err test
-
-app.get('/join', database.join);
-app.get('/login', database.login);
+app.get('/users', user.list);
+app.get('/out', database.out);
+app.post('/join', database.join);
+app.post('/login', database.login);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));

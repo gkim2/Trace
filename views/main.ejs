@@ -2,16 +2,14 @@
 <html lang="ko">
 <head>
 	<meta charset="UTF-8">
-	<title>index.html</title>
+	<title>main.html</title>
 </head>
 <body>
-	<h1>INDEX</h1>
-	<a href="test1">test1</a>
-	<a href="test2">test2</a></br>
-	<a href="join">join</a>
-	<a href="login">login</a>
-	<a href="list">list</a>
-	<a href="update">update</a>
-	<a href="delete">delete</a>
+	<form name=frm method=post action="login">
+		<h1>MAIN</h1>
+		id<input type="text" name="id"/>pw<input type="password" name="pw"/>
+		<a href="javascript:document.frm.submit()">로그인</a>
+		<a href="join.html">가입</a>
+	</form>
 </body>
 </html>
