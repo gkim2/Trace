@@ -157,15 +157,18 @@ module.exports.upload = function(req, res){
 };
 ///////////////////////////////////////////////////////////////////////////////////
 module.exports.dataUpdate =function(req,res){
-		//var doc = UserData.findOne({mgIdx:"mgIdx"});
+		var doc = UserData.findOne({mgIdx :'song1'});
+	console.log(doc.constructor);
 	UserData.findOne({},
 		    function(err, newDoc) {
 		        if (!err) {
 		        	UserData = newDoc;
-		            console.log(UserData);
+		            console.log(UserData._id);
 		        }else{
 		        	console.log('fail');
 		        }
+		       // res.redirect("/fileList");
+		        
 		    }
 		);
 };
@@ -210,17 +213,13 @@ module.exports.fileList = function(req,res){
 		}else{
 			res.render("flieList.html",{"files":data});
 		//	console.log(data);
-			//res.render = view 폴더에 있는 filelist2 파일에서 files
+			//res.render = view 폴더에 있는 filelist 파일에서 files
 			//변수에 있는  data의 key 값을 출력한다.
 			//{오브젝트,키}
 		}
 	});
 };
 
-module.exports.update = function(req, res){
-
-	
-}
 
 
 
