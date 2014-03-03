@@ -11,24 +11,22 @@ var path = require('path');
 var app = express();
 
 
-var m = require('./mData/mongo');
-m.conLog();
+
+
+
 //var test = require('./mData/model/mgMODEL');
-var contentsData = require('./schema/mgSKM');
-var file = mongoose.model("data",contentsData.FileSchema);
-//var test2 = require('./mData/model/mgMODEL');
-/*
-m.db.song.find(function(err , data) {
-	console.log(data);
-});*/
+
+
 
 // all environments
 app.set('port', process.env.PORT || 3000);
+app.engine(".html", require("ejs").__express);
 app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'ejs');
+app.set('view engine', 'html');
 app.use(express.favicon());
 app.use(express.logger('dev'));
 app.use(express.json());
+app.use(express.bodyParser());
 app.use(express.urlencoded());
 app.use(express.methodOverride());
 app.use(app.router);
@@ -39,8 +37,16 @@ if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
 
+var m = require('./mData/mongo');
+app.post("/upload" , m.upload);
 app.get('/', routes.index);
+app.get("/fileList" , m.fileList);
 
+
+
+
+
+//---------------------------------------------
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
 });

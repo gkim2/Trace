@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8">
+	<title>fileList.html</title>
+</head>
+<body>
+<div class="container">
+	<table>
+		<caption>파일 목록입니다.</caption>
+		<thead>
+			<tr>
+				<th>작성자</th>
+				<th>제목</th>
+				<th>파일명</th>
+				<th>파일 사이즈</th>
+				<th>등록일</th>
+				<th>삭제</th>
+			</tr>
+		</thead>
+		<tbody>
+			<%for(var i=0; i<files.length; i++){
+				var tmp=files[i];%>	
+			<tr>
+				<td><%=tmp.mgIdx%></td>
+				<td><%=tmp.text%></td>
+				<td><a href="fileDown2?id=<%=tmp._id%>"><%=tmp.filename%></a></td>
+				<td><%=tmp.filesize%></td>
+				<td><%=tmp.regdate%></td>
+				<td><a href="fileDelete2?id=<%=tmp._id%>">삭제</a></td>
+			</tr>	
+			<%}%>
+		</tbody>
+	</table>
+</div>	
+</body>
+</html>
