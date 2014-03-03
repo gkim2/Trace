@@ -10,24 +10,29 @@
 		<caption>파일 목록입니다.</caption>
 		<thead>
 			<tr>
+				<th>OBJECTID </th>
 				<th>작성자</th>
-				<th>제목</th>
+				<th>인덱스</th>
+				<th>내용</th>
 				<th>파일명</th>
 				<th>파일 사이즈</th>
 				<th>등록일</th>
 				<th>삭제</th>
+				<th><a href="dataUpdate">새로 고침</a></th>
 			</tr>
 		</thead>
-		<tbody>
+		<tbody border="1">
 			<%for(var i=0; i<files.length; i++){
 				var tmp=files[i];%>	
 			<tr>
+				<td><%-tmp._id%></td>
 				<td><%=tmp.mgIdx%></td>
-				<td><%=tmp.text%></td>
+				<td><%=tmp.index%></td>
+				<td><%=tmp.textData%></td>
 				<td><a href="fileDown2?id=<%=tmp._id%>"><%=tmp.filename%></a></td>
 				<td><%=tmp.filesize%></td>
 				<td><%=tmp.regdate%></td>
-				<td><a href="fileDelete2?id=<%=tmp._id%>">삭제</a></td>
+				<td><a href="fileDelete?id=<%=tmp._id%>">삭제</a></td>
 			</tr>	
 			<%}%>
 		</tbody>

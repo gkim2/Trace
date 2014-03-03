@@ -38,7 +38,10 @@ if ('development' == app.get('env')) {
 }
 
 var m = require('./mData/mongo');
-app.post("/upload" , m.upload);
+//app.get('/user/:id' , m.loadUser);
+app.post("/upload" ,m.upload);
+app.get('/dataUpdate' , m.dataUpdate);
+app.get('/fileDelete' , m.delete);
 app.get('/', routes.index);
 app.get("/fileList" , m.fileList);
 
