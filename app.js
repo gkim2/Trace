@@ -73,7 +73,7 @@ io.set('authorization',function(data,callback){
 				callback('Not logged in.',false);
 			}else{
 				// hs 데이터에 세션 첨부 후 socket.handshake.session라는 명칭으로 접근 가능
-				console.log('세션아디 '+session.SID);
+				console.log('세션아디 '+session.id);
 				data.session=session;
 				callback(null,true);
 			}
@@ -84,7 +84,7 @@ io.set('authorization',function(data,callback){
 // 클라 소켓 접속시 1초마다 주기적으로 현재 시간 emit
 io.on('connection',function(socket){
 	var sender=setInterval(function(){
-		socket.emit('누가 언제 : ',socket.id+' 가 '+new Date().getTime());
+		socket.emit('누가 언제 : ',socket.handshake.session.id+' 가 '+new Date().getTime());
 	},1000);
 	socket.on('disconnect',function(){
 		clearInterval(sender);
