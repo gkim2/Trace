@@ -45,6 +45,7 @@ app.get('/users', user.list);
 app.get('/out', database.out);
 app.post('/join', database.join);
 app.post('/login', database.login);
+app.get('/test',database.test);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
