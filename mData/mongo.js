@@ -46,9 +46,9 @@ function dateFormat(val){
 //unique 스키마를 가지고 있을 이유가 없음. 핸들링은 _id 로 제어
 var userSchema = new Schema({
 	
-	'mgIdx'		:	String,
-	'index'		:	String,
-	'textData'	:	String,
+	'mgIdx'		:	String,		// 고유아이디
+	'index'		:	String,		
+	'textData'	:	String,		
 	'filename' 	:	String,
 	'filesize'	:	Number,
 	'file'		:	Buffer,
@@ -71,7 +71,8 @@ var CommentData = mongoose.model("comment",commentSchema);
 
 
 //
-/*
+/* route 미들웨어 접속
+ * 현재 일단 않씀
  module.exports.loadUser = function(req , res , next) {
 	UserData.findOne({mgIdx : req.body.writer } , function(err , data){
 		if(err){
@@ -88,7 +89,7 @@ var CommentData = mongoose.model("comment",commentSchema);
 }
 */
 //Model.find(query, fields, options, callback) 
-
+ 
 /** 1. 전송속도 GET > POST
  	2. 히스토리 백 할 때 GET은 이전데이터를 보여주며, POST는 새로 요청
 	3. 인코딩 방식이 다르다
