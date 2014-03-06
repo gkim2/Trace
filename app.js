@@ -11,15 +11,16 @@ var http = require('http');
 var path = require('path');
 var fs=require("fs");//fs 모듈
 var mysql = require('mysql');//mysql 모듈
-//connection 객체 생성
-var connection = mysql.createConnection({
+//connection 정보
+var connection = {
     host     : 'localhost', 
     user     : 'root',
     password : 'tiger'
-});
+};
+//mysql pool 객체 생성
+var pool = mysql.createPool(connection);
 //global 처리
-global.conn = connection;
-global.fs = fs;
+global.pool = pool;
 
 var app = express();
 
@@ -45,7 +46,7 @@ app.get('/users', user.list);
 app.get('/out', database.out);
 app.post('/join', database.join);
 app.post('/login', database.login);
-app.get('/test',database.test);
+
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));

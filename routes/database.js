@@ -1,31 +1,12 @@
-//수정
-exports.update = function(req, res){
-	//전역변수로 받아올 결과 값
-	var chInfo = ["2"];
-	global.conn.query('USE jschema', function(err){
-        if(err) throw err;
-        global.conn.query('UPDATE members SET mdelflag= "Y" where midx = ?',outNum, function(err, result){
-            if(err) throw err;
-            
-            var result = result['changedRows'];
-            
-            if(result > 0){
-            	res.send("성공");//탈퇴 성공시 이동
-            }else{
-            	res.send("실패");
-            }
-        });
-    });
-};
+
 //탈퇴
 exports.out = function(req, res){
-	//전역변수로 받아올 결과 값
-	var outNum = {midx:"2"};
 	
-	global.conn.query('USE jschema', function(err){
-        if(err) throw err;
-        global.conn.query('UPDATE members SET mdelflag= "Y" where ?',outNum, function(err, result){
-            if(err) throw err;
+	var outNum = [{midx:"2"}];
+	var sql = 'UPDATE members SET mdelflag= "Y" where ?';
+	global.pool.getConnection(function(err, conn){
+		conn.query(sql, outNum, function(err, result){
+			if(err) throw err;
             
             var result = result['changedRows'];
             
@@ -34,8 +15,9 @@ exports.out = function(req, res){
             }else{
             	res.send("실패");
             }
-        });
-    });
+		});
+	});
+	
 };
 
 //로그인
