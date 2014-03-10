@@ -2,7 +2,7 @@
 exports.update=function(req,res){
 	//전역변수로 받아올 결과 값
 	var outNum={MIDX:req.socket.handshake.session.id};
-	pool.getConnection(function(err,conn){
+	global.pool.getConnection(function(err,conn){
 		conn.query('USE jschema',function(err){
 			if(err){
 				throw err;
@@ -27,7 +27,7 @@ exports.login=function(req,res){
 	var id=req.body.id;
 	var pw=req.body.pw;
 	var loginInfo=[id, pw];
-	pool.getConnection(function(err,conn){
+	global.pool.getConnection(function(err,conn){
 		conn.query('USE jschema',function(err){
 			if(err){
 				throw err;
@@ -49,7 +49,7 @@ exports.login=function(req,res){
 
 //가입
 exports.join=function(req,res){
-	pool.getConnection(function(err,conn){
+	global.pool.getConnection(function(err,conn){
 		conn.query('USE jschema',function(err){
 			if(err){
 				throw err;
