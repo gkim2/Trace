@@ -1,11 +1,24 @@
+//local mongoDB URL
+/**  // external Mongodb url
+ *  mongodb://username:password@hostname:port/database
+ */
+//var mgURL ='mongodb://192.168.0.120/song';
+var mgURL='mongodb://song:hbilab@ds033459.mongolab.com:33459/project';
+var mongoose=require("mongoose").connect(mgURL,function(err,db){
+	if(err){
+		console.log("error!: unable to connect to mongodb");
+	}else{
+		console.log("mongodb connect!");
+	}
+});
 //스키마 객체를 받아온다.
-var Schema=global.mongoose.Schema;
+var Schema=mongoose.Schema;
 //고유의 ID 값을 읽어옴
 var ObjectId=Schema.ObjectId;
 
 //log test
 module.exports.conLog=function(){
-	var db=global.mongoose.connection;
+	var db=mongoose.connection;
 	db.once("open",function(err){
 		console.log("DB connect !");
 	});
@@ -42,8 +55,8 @@ var commentSchema=new Schema({
 
 //collections 생성 
 //collection 이름은 자동으로 뒤에 +s 가 붙는다.
-var UserData=global.mongoose.model("data",userSchema);
-var CommentData=global.mongoose.model("comment",commentSchema);
+var UserData=mongoose.model("data",userSchema);
+var CommentData=mongoose.model("comment",commentSchema);
 
 //
 /* route 미들웨어 접속
@@ -74,7 +87,7 @@ var CommentData=global.mongoose.model("comment",commentSchema);
  * //upload 는 반드시 post 방식으로 설계
 **/
 
-module.exports.upload=function(req, res){
+exports.upload=function(req,res){
 	var index = req.body.index;
 	var mgIdx = req.body.id;
 	var textData = req.body.text;
@@ -128,7 +141,7 @@ module.exports.upload=function(req, res){
 };
 
 ///////////////////////////////////////////////////////////////////////////////////
-module.exports.dataUpdate=function(req,res){
+exports.dataUpdate=function(req,res){
 	var doc=UserData.findOne({mgIdx:'song1'});
 	console.log(doc.constructor);
 	UserData.findOne({},function(err,newDoc){
@@ -142,7 +155,7 @@ module.exports.dataUpdate=function(req,res){
 	});
 };
 
-module.exports.commentWrite=function(req,res){
+exports.commentWrite=function(req,res){
 	var fidx=req.body.id;
 	var textData=req.body.text;
 	var obj={
@@ -159,7 +172,7 @@ module.exports.commentWrite=function(req,res){
 	});
 };
 
-module.exports.filedelete=function(req,res){
+exports.fileDelete=function(req,res){
 	var _id = req.query.id;
 	UserData.remove({"_id":_id},function(err){
 		if(err){
@@ -170,7 +183,7 @@ module.exports.filedelete=function(req,res){
 	});
 };
 
-module.exports.fileList=function(req,res){
+exports.fileList=function(req,res){
 	UserData.find()
 	.sort("_id")
 	.select("_id mgIdx index textData filename filesize regdate")

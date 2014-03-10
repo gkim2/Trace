@@ -1,5 +1,5 @@
 //탈퇴
-exports.update=function(req,res){
+exports.out=function(req,res){
 	//전역변수로 받아올 결과 값
 	var outNum={MIDX:req.socket.handshake.session.id};
 	global.pool.getConnection(function(err,conn){
