@@ -9,7 +9,7 @@ exports.connection=function(socket){
 			if(err){
 				throw err;
 			}
-			conn.query("SELECT COUNT(1) AS CNT,MIDX FROM MEMBERS WHERE MID=? AND MPW=HEX(DES_ENCRYPT(?,'secretKey')) AND MDELFLAG='N'",loginInfo,function(err,result){
+			conn.query("SELECT COUNT(1) AS CNT,MIDX,MNAME FROM MEMBERS WHERE MID=? AND MPW=HEX(DES_ENCRYPT(?,'secretKey')) AND MDELFLAG='N'",loginInfo,function(err,result){
 				if(err){
 					conn.release();
 					console.error(err);
@@ -17,7 +17,7 @@ exports.connection=function(socket){
 				}
 				console.error(result[0]);
 				if(result[0].CNT>0){
-					socket.emit("logedIn",{"logedIn":true,"midx":result[0].MIDX});
+					socket.emit("logedIn",{"logedIn":true,"midx":result[0].MIDX,"mname":result[0].MNAME});
 				}else{
 					socket.emit("logedIn",{"logedIn":false});
 				}
@@ -26,19 +26,15 @@ exports.connection=function(socket){
 		});
 	});
 	
-	socket.on("getContents",function(data){
-		global.UserData.find()
+	socket.on("askContents",function(data){
+		UserData.find()
 		.sort("_id")
-		.select("_id mgIdx index textData filename filesize regdate")
+		.select("_id mgIdx mgName mgImage index textData filename filesize file regdate")
 		.exec(function(err,data){
 			if(err){
-				res.json({"result":"fail"});
+				throw err;
 			}else{
-				res.render("flieList.html",{"files":data});
-			//	console.log(data);
-				//res.render = view 폴더에 있는 filelist 파일에서 files
-				//변수에 있는  data의 key 값을 출력한다.
-				//{오브젝트,키}
+				socket.emit("getContents",{"contents":data});
 			}
 		});
 	});

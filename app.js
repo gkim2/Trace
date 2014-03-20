@@ -72,12 +72,14 @@ function dateFormat(val){
 //유저 스키마 생성.
 //unique 스키마를 가지고 있을 이유가 없음. 핸들링은 _id 로 제어
 var userSchema=new Schema({
-	'mgIdx':String,		// 고유아이디
-	'index':String,
-	'textData':String,
-	'filename':String,
-	'filesize':Number,
-	'file':Buffer,
+	'mgIdx':String,		//회원인덱스
+	'mgName':String,	//회원이름
+	'mgImage':String,	//회원프로필썸네일
+	'index':String,		//컨텐츠인덱스
+	'textData':String,	//컨텐츠텍스트
+	'filename':String,	//이미지파일명
+	'filesize':Number,	//이미지사이즈
+	'file':Buffer,		//이미지데이터
 	'fileMeta':[{type:String},{type:String}],
 	'regdate':{type:Date,default:Date.now,get:dateFormat}
 });
