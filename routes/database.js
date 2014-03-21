@@ -61,24 +61,28 @@ exports.connection=function(socket){
 		});
 	});
 	
-	socket.on("join",function(req,res){
+	socket.on("join",function(data){
+		var image=data.image;
+		var id=data.id;
+		var pw=data.pw;
+		var name=data.name;
+		var joinInfo = [id,pw,name,"M","testphone","1990-04-30","서울특별시"];
 		pool.getConnection(function(err,conn){
-			conn.query('USE jschema',function(err){
 				if(err){
 					throw err;
 				}
-				//테스트용 데이터
-				var joinInfo = ["testid","testpw","testname","M","testphone","1990-04-30","서울특별시"];
-				
-				conn.query('INSERT INTO MEMBERS(MID,MPW,MNAME,MADDR,MREGDATE,MSEX,MPHONT,MBIRTH) SELECT ?,HEX((DES_ENCRYPT(?,"UTF-8")),?,AIDX,NOW(),?,?,? FROM ADDR WHERE ACITY=?',joinInfo,function(err,result){
+				conn.query('INSERT INTO MEMBERS(MID,MPW,MNAME,MADDR,MREGDATE,MSEX,MPHONE,MBIRTH) SELECT ?,HEX(DES_ENCRYPT(?,"secretKey")),?,AIDX,NOW(),?,?,? FROM addrs WHERE ACITY=?',joinInfo,function(err,result){
 					if(err){
 						throw err;
 					}
-					res.send("성공");
+					socket.emit("signUp",{"signUp":false});
+					global.fs.writeFile('./images/'+id+'.txt', image, function(err) {
+						  if(err) throw err;
+						  console.log('File write completed');
+						});
+					});
 				});
 			});
-		});
-	});
 	
 	
 };

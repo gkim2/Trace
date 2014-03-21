@@ -11,7 +11,7 @@ var io=require('socket.io'),
 	path = require('path');*/
 
 var PORT=process.env.PORT||80,
-	HOST=process.env.HOST||'192.168.0.90';
+	HOST=process.env.HOST||'192.168.0.175';
 
 /*// Express SID를 포함하는 cookie key
 var EXPRESS_SID_KEY='express.sid';
@@ -30,8 +30,8 @@ var cookieParser=express.cookieParser(COOKIE_SECRET);*/
 var pool=mysql.createPool({
 	"host":"localhost",
 	"port":3306,
-	"user":"js",
-	"password":"a",
+	"user":"ssss",
+	"password":"1234",
 	"database":"jschema"
 });
 
