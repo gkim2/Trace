@@ -11,7 +11,7 @@ var io=require('socket.io'),
 	path = require('path');*/
 
 var PORT=process.env.PORT||80,
-	HOST=process.env.HOST||'192.168.0.175';
+	HOST=process.env.HOST||'192.168.200.1';
 
 /*// Express SID를 포함하는 cookie key
 var EXPRESS_SID_KEY='express.sid';

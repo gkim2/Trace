@@ -66,18 +66,26 @@ exports.connection=function(socket){
 		var id=data.id;
 		var pw=data.pw;
 		var name=data.name;
-		var joinInfo = [id,pw,name,"M","testphone","1990-04-30","서울특별시"];
+		var joinInfo = [id,pw,name,"M","testphone","1990-04-30",id];
 		pool.getConnection(function(err,conn){
 				if(err){
 					throw err;
 				}
-				conn.query('INSERT INTO MEMBERS(MID,MPW,MNAME,MADDR,MREGDATE,MSEX,MPHONE,MBIRTH) SELECT ?,HEX(DES_ENCRYPT(?,"secretKey")),?,AIDX,NOW(),?,?,? FROM addrs WHERE ACITY=?',joinInfo,function(err,result){
+				conn.query('INSERT INTO MEMBERS(MID,MPW,MNAME,MREGDATE,MSEX,MPHONE,MBIRTH) SELECT ?,HEX(DES_ENCRYPT(?,"secretKey")),?,NOW(),?,?,? FROM dual WHERE NOT EXISTS (SELECT *  FROM members WHERE  members.mid = ?)',joinInfo,function(err,result){
 					if(err){
 						throw err;
 					}
-					socket.emit("signUp",{"signUp":false});
+					var str = result['affectedRows'];
+					if(str==1){
+						socket.emit("signUp",{"signUp":false});
+						console.log('SignUp');
+					}else if(str==0){
+						socket.emit("reSignUp",{"reSignUp":false});
+						console.log('reSignUp');
+					}
 					global.fs.writeFile('./images/'+id+'.txt', image, function(err) {
 						  if(err) throw err;
+						  console.log('결과/'+str);
 						  console.log('File write completed');
 						});
 					});
