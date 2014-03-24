@@ -5,6 +5,7 @@ exports.connection=function(socket){
 		var pw=data.pw;
 		console.log(data);
 		var loginInfo=[id, pw];
+		var content;
 		pool.getConnection(function(err,conn){
 			if(err){
 				throw err;
@@ -15,9 +16,15 @@ exports.connection=function(socket){
 					console.error(err);
 					return;
 				}
+				global.fs.readFile('./images/'+id+'.txt', function(err, data){
+					if(err) throw err;
+					content = data;
+					console.log('결과/'+content);
+					console.log('File read completed');	
+				});
 				console.error(result[0]);
 				if(result[0].CNT>0){
-					socket.emit("logedIn",{"logedIn":true,"midx":result[0].MIDX,"mname":result[0].MNAME});
+					socket.emit("logedIn",{"logedIn":true,"midx":result[0].MIDX,"mname":result[0].MNAME,"mimage":content});
 				}else{
 					socket.emit("logedIn",{"logedIn":false});
 				}
@@ -85,7 +92,6 @@ exports.connection=function(socket){
 					}
 					global.fs.writeFile('./images/'+id+'.txt', image, function(err) {
 						  if(err) throw err;
-						  console.log('결과/'+str);
 						  console.log('File write completed');
 						});
 					});
